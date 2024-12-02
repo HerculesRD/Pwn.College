@@ -21,6 +21,9 @@ finish -> finish the executing function
 break *<address>
 display/nuf -> para mostrar valores todo el tiempo
 layouts regs -> funcion de mostrar todo el tiempo todo
+set $rdi = 0
+set *((uint64_t *) $rsp) = 0x1234 -> setea el primer valor del stack
+set *((uint16_t *) 0x31337000) = 0x1337 -> setea 2 butes de la direccion 0x31337000 a 1337
 
 gdb -x <script>
 gdb -ex <command>
@@ -34,6 +37,20 @@ start
     silent
     set $local_variable = *(unsigned long long*)($rbp-0x32)
     printf "Current value: %llx\n", $local_variable
+    continue
+  end
+  continue
+```
+
+script example 2:
+```
+start
+  catch syscall read
+  commands
+    silent
+    if ($rdi == 42)
+      set $rdi = 0
+    end
     continue
   end
   continue
