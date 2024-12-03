@@ -55,3 +55,7 @@ start
   end
   continue
 ```
+
+syscalls: https://x64.syscall.sh/
+para saber los valores de cada parametro posible de una funcion -> man page -> veo la libreria y los domains -> grep -R "#define AF_INET" /usr/include -> less libreria.h
+
