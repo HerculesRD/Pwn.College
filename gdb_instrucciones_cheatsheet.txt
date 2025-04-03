@@ -59,3 +59,10 @@ start
 syscalls: https://x64.syscall.sh/
 para saber los valores de cada parametro posible de una funcion -> man page -> veo la libreria y los domains -> grep -R "#define AF_INET" /usr/include -> less libreria.h
 
+si el exe esta strip:
+> info file (para saber el offset del entry point)
+> set stop-on-solib-events 1 (para parar en la primera instruccion)
+> r
+> info proc map (la primera start addr es la que me interesa)
+> b *(entrypoint+start addr)
+> c (repetir hasta que llegue al breakpoint)
